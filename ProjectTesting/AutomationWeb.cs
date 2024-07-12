@@ -57,33 +57,29 @@ namespace ProjectTesting.access
 
             Thread.Sleep(7000);
 
-            //List<IWebElement> tripCards = (List<IWebElement>)js
-            //.ExecuteScript("return document.querySelectorAll(\".kKMdJR\")");
+            string newTab = driver.WindowHandles.Last();
+            driver.SwitchTo().Window(newTab);
 
-
-            //problema de aquisição dos cards de viagem (nao acesso)
-
-
-            List<IWebElement> tripCards = driver.FindElements(By.TagName("ol")).ToList();
-            foreach (var card in tripCards)
-            {
-                Console.WriteLine(card.Text);
-            }
             
-           /* for (int i = 0; i < tripCards.Count; i++)
+
+
+            List<IWebElement> tripCards = driver.FindElements(By.ClassName("kKMdJR")).ToList();
+  
+            
+            for (int i = 0; i < tripCards.Count; i++)
             {
                 IWebElement cardInfo = tripCards[i].FindElement(By.Id($"FlightInfoComponent{i}"));
-                string goingDate = cardInfo.FindElement(By.Id($"flight-info-{i}-origin")).Text;
+                string goingDate = cardInfo.FindElement(By.ClassName($"flight-information"))
+                    .FindElement(By.ClassName("kvztEO")).Text;
                 string goingDuration = cardInfo.FindElement(By.ClassName("flight-duration")).FindElement(By.TagName("span")).Text;
-                string arriveDate = cardInfo.FindElement(By.Id($"flight-info-{i}-destination")).Text;
+                string arriveDate = cardInfo.FindElement(By.ClassName("flight-information"))
+                    .FindElement(By.ClassName("kvztEO")).Text;
 
+                
                 List<IWebElement> divValueTrip =[.. cardInfo.FindElements(By.XPath($"//*[@id=\"WrapperCardFlight{i}\"]/div/div[2]/div[2]"))];
+                //erro nessa linha abaixo:
                 string valueTrip = divValueTrip[1].Text;
-                  
-
-
-
-            }*/
+            }
             
 
         }
