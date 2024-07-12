@@ -1,13 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjectTesting.access
-{
+{ 
+
      class AutomationWeb
     {
         public IWebDriver driver;
@@ -44,13 +47,44 @@ namespace ProjectTesting.access
             //Volta:
             driver.FindElement(By.XPath("//*[@id=\"txtInputDestination_field\"]")).Click();
             driver.FindElement(By.XPath("//*[@id=\"txtInputDestination_field\"]")).SendKeys(DestinyTrip);
+            Thread.Sleep(1000);
             driver.FindElement(By.Id("btnItemAutoComplete_0")).Click();
-            //Ida calendário:
+            //data de Ida calendário:
             driver.FindElement(By.XPath("//*[@id=\"inputSection\"]/form/div/div[3]/div/div[1]")).Click();
-            //Descobrir como acessar uma data disponível e fazer validação no calendário.
-            
-            
+            Console.ReadLine();
+            //Botao de pesquisar:
+            driver.FindElement(By.XPath("//*[@id=\"btnSearchCTA\"]")).Click();
 
+            Thread.Sleep(7000);
+
+            //List<IWebElement> tripCards = (List<IWebElement>)js
+            //.ExecuteScript("return document.querySelectorAll(\".kKMdJR\")");
+
+
+            //problema de aquisição dos cards de viagem (nao acesso)
+
+
+            List<IWebElement> tripCards = driver.FindElements(By.TagName("ol")).ToList();
+            foreach (var card in tripCards)
+            {
+                Console.WriteLine(card.Text);
+            }
+            
+           /* for (int i = 0; i < tripCards.Count; i++)
+            {
+                IWebElement cardInfo = tripCards[i].FindElement(By.Id($"FlightInfoComponent{i}"));
+                string goingDate = cardInfo.FindElement(By.Id($"flight-info-{i}-origin")).Text;
+                string goingDuration = cardInfo.FindElement(By.ClassName("flight-duration")).FindElement(By.TagName("span")).Text;
+                string arriveDate = cardInfo.FindElement(By.Id($"flight-info-{i}-destination")).Text;
+
+                List<IWebElement> divValueTrip =[.. cardInfo.FindElements(By.XPath($"//*[@id=\"WrapperCardFlight{i}\"]/div/div[2]/div[2]"))];
+                string valueTrip = divValueTrip[1].Text;
+                  
+
+
+
+            }*/
+            
 
         }
     }

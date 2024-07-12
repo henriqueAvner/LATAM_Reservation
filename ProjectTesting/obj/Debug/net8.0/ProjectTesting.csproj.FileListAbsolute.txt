@@ -20,3 +20,4 @@ C:\Users\Tarefas\Desktop\C#-PROJECTS\ProjectTesting\ProjectTesting\obj\Debug\net
 C:\Users\Tarefas\Desktop\C#-PROJECTS\ProjectTesting\ProjectTesting\obj\Debug\net8.0\ProjectTesting.pdb
 C:\Users\Tarefas\Desktop\C#-PROJECTS\ProjectTesting\ProjectTesting\obj\Debug\net8.0\ProjectTesting.genruntimeconfig.cache
 C:\Users\Tarefas\Desktop\C#-PROJECTS\ProjectTesting\ProjectTesting\obj\Debug\net8.0\ref\ProjectTesting.dll
+C:\Users\Tarefas\Desktop\C#-PROJECTS\ProjectTesting\ProjectTesting\obj\Debug\net8.0\ProjectTesting.sourcelink.json
