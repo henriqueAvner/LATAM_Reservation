@@ -66,7 +66,7 @@ namespace ProjectTesting.access
             List<IWebElement> tripCards = driver.FindElements(By.ClassName("kKMdJR")).ToList();
   
             
-            for (int i = 0; i <= 3 ; i++)
+            for (int i = 0; i <= 2 ; i++)
             {
                 IWebElement cardInfo = tripCards[i].FindElement(By.Id($"FlightInfoComponent{i}"));
                 string goingTime = cardInfo.FindElement(By.ClassName($"flight-information"))
@@ -81,13 +81,19 @@ namespace ProjectTesting.access
 
                 string arriveTime = arriveSpan.Count > 1? arriveSpan[1].Text : arriveSpan[0].Text;
 
+                string valueTrip = cardInfo.FindElement(By.ClassName("bwyGPg")).FindElement(By.TagName("span")).Text;
 
+                Console.WriteLine("==========================");
                 Console.WriteLine($"Horário de ida: {goingTime}");
+                Console.WriteLine("-------------------------");
                 Console.WriteLine($"Duração: {goingDuration}");
+                Console.WriteLine("-------------------------");
                 Console.WriteLine($"Horário de chegada: {arriveTime}");
+                Console.WriteLine("-------------------------");
+                Console.WriteLine($"Valor: {valueTrip}");
+                Console.WriteLine("==========================");
+                Console.WriteLine();
             }
-            
-            //buscar pelo valor
         }
     }
 }
