@@ -55,7 +55,7 @@ namespace ProjectTesting.access
             //Botao de pesquisar:
             driver.FindElement(By.XPath("//*[@id=\"btnSearchCTA\"]")).Click();
 
-            Thread.Sleep(7000);
+            Thread.Sleep(10000);
 
             string newTab = driver.WindowHandles.Last();
             driver.SwitchTo().Window(newTab);
@@ -66,22 +66,28 @@ namespace ProjectTesting.access
             List<IWebElement> tripCards = driver.FindElements(By.ClassName("kKMdJR")).ToList();
   
             
-            for (int i = 0; i < tripCards.Count; i++)
+            for (int i = 0; i <= 3 ; i++)
             {
                 IWebElement cardInfo = tripCards[i].FindElement(By.Id($"FlightInfoComponent{i}"));
-                string goingDate = cardInfo.FindElement(By.ClassName($"flight-information"))
-                    .FindElement(By.ClassName("kvztEO")).Text;
-                string goingDuration = cardInfo.FindElement(By.ClassName("flight-duration")).FindElement(By.TagName("span")).Text;
-                string arriveDate = cardInfo.FindElement(By.ClassName("flight-information"))
+                string goingTime = cardInfo.FindElement(By.ClassName($"flight-information"))
                     .FindElement(By.ClassName("kvztEO")).Text;
 
-                
-                List<IWebElement> divValueTrip =[.. cardInfo.FindElements(By.XPath($"//*[@id=\"WrapperCardFlight{i}\"]/div/div[2]/div[2]"))];
-                //erro nessa linha abaixo:
-                string valueTrip = divValueTrip[1].Text;
+                IList<IWebElement> spans = cardInfo.FindElement(By.ClassName("flight-duration"))
+                    .FindElements(By.TagName("span"));
+
+                string goingDuration = spans.Count > 1 ? spans[1].Text : spans[0].Text;
+
+                IList<IWebElement> arriveSpan = cardInfo.FindElements(By.ClassName("flight-information"));
+
+                string arriveTime = arriveSpan.Count > 1? arriveSpan[1].Text : arriveSpan[0].Text;
+
+
+                Console.WriteLine($"Horário de ida: {goingTime}");
+                Console.WriteLine($"Duração: {goingDuration}");
+                Console.WriteLine($"Horário de chegada: {arriveTime}");
             }
             
-
+            //buscar pelo valor
         }
     }
 }
